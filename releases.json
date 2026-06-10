@@ -1,6 +1,140 @@
 {
-  "latest": "v1.26.1",
+  "latest": "v1.31.0",
   "releases": [
+    {
+      "version": "v1.31.0",
+      "date": "2026-06-10",
+      "groups": [
+        {
+          "title": "AI 配置系统重构",
+          "items": [
+            "**统一配置架构**：4 套旧配置合并为 1 套 config.py + UI 两区（Chat/Content），删除 2600 行死代码",
+            "**配置界面优化**：后台 AI 配置页拆分为 Chat 和 Content 两个清晰区域",
+            "**向后兼容**：保留 legacy 格式自动迁移，已有配置无需手动修改"
+          ]
+        },
+        {
+          "title": "Bug 修复",
+          "items": [
+            "**AI 内容生成修复**：修复前端 context key 不匹配导致 AI 生成结果偏离的问题",
+            "**Prompt 模板优化**：11 个 intent 全部重写，加强输出格式约束和长度控制"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "v1.30.0",
+      "date": "2026-06-08",
+      "groups": [
+        {
+          "title": "后台 AI 帮助助手",
+          "items": [
+            "**对话版指南**：新管理员直接问 AI 操作问题，基于指南内容回答",
+            "**两种入口**：后台右下角浮动按钮 + 独立帮助页 /admin/help",
+            "**Feature Flag 门控**：admin_help_chat，默认关闭，按站点开启",
+            "**安全硬化**：管理员鉴权 + 角色白名单防注入 + 输入长度上限防滥用"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "v1.29.1",
+      "date": "2026-06-03",
+      "groups": [
+        {
+          "title": "SEO 修复",
+          "items": [
+            "**FAQ schema 修复**：FAQ 页面 meta description 和 structured data 修正",
+            "**Robots 屏蔽**：admin/api 路径加入 robots.txt disallow",
+            "**model_config 守卫**：get_model_config 空值防护，避免未配置站点 500 错误",
+            "**迁移 053 加固**：数据迁移 WHERE 条件加固，防止覆盖用户自定义配置"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "v1.29.0",
+      "date": "2026-05-30",
+      "groups": [
+        {
+          "title": "Agent 框架重构",
+          "items": [
+            "**ReAct 策略**：Think-Act-Observe 循环推理，AI 可主动搜索产品后回答",
+            "**ToolPool 工具执行器**：search / detail / recommend / submit_inquiry 四大工具",
+            "**MessageRouter 意图路由**：自动识别用户意图，分发到最佳处理链",
+            "**Middleware 管线**：限流、日志、安全检查可插拔中间件"
+          ]
+        },
+        {
+          "title": "积压功能上线",
+          "items": [
+            "**AI Content 内容生成**：意图驱动引擎 + SSE 流式 + 面板式 UX",
+            "**AI Image 图片处理**：白底抠图 / 背景清理 / 画面扩展 / 画质增强 / 风格变换",
+            "**Hybrid Search 混合搜索**：pgvector 语义搜索 + 关键词搜索融合排序"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "v1.28.1",
+      "date": "2026-05-27",
+      "groups": [
+        {
+          "title": "AI Content Editor UX 重构",
+          "items": [
+            "**面板式交互**：从浮动按钮升级为字段旁内联按钮 + 展开面板引导",
+            "**预览采纳**：AI 生成结果先预览，确认后才写入字段",
+            "**上下文透明**：面板显示 AI 参考的数据来源",
+            "**优化操作**：已有内容提供 Rewrite / Translate / Expand / Condense",
+            "**新增 5 个 Intent**：product_seo_title / keywords / blog_seo_desc / category_description / category_seo_desc"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "v1.28.0",
+      "date": "2026-05-24",
+      "groups": [
+        {
+          "title": "AI Image 图片编辑",
+          "items": [
+            "**五种预设**：白底抠图 / 清理背景 / 扩展画面 / 画质增强 / 风格变换",
+            "**独立配置**：后台 AI 配置新增图片 Tab，客户自行配置凭据",
+            "**Preview & Confirm**：编辑结果预览，确认后才持久化",
+            "**产品页集成**：已有图片显示 AI Optimize 按钮，一键优化"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "v1.27.1",
+      "date": "2026-05-21",
+      "groups": [
+        {
+          "title": "AI Content 意图驱动引擎",
+          "items": [
+            "**Intent Router**：11 个注册意图，支持自定义扩展",
+            "**SSE 流式生成**：统一接口，实时流式输出内容",
+            "**Polish 润色**：Regenerate / Rewrite / Translate / Expand / Condense",
+            "**用量追踪**：月度 token 配额检查 + 按日统计"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "v1.27.0",
+      "date": "2026-05-21",
+      "groups": [
+        {
+          "title": "RAG 混合搜索",
+          "items": [
+            "**向量嵌入**：产品翻译表新增 pgvector embedding 字段，支持语义搜索",
+            "**自动更新**：保存产品时自动更新对应翻译的 embedding",
+            "**Rebuild API**：POST /api/ai/rebuild-embeddings 重建产品向量索引"
+          ]
+        }
+      ]
+    },
     {
       "version": "v1.26.0",
       "date": "2026-05-15",
